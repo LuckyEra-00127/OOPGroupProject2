@@ -20,7 +20,7 @@ public class Main {
                 System.out.println(s.getDay() + " " + s.getTime()));
 
         // Update a schedule
-        schedule1.setTime("11:00 AM");
+        schedule1.setTime("12:00 AM");
         scheduleController.updateSchedule(schedule1);
 
         // Get schedule by ID
