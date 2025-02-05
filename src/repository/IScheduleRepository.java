@@ -1,12 +1,12 @@
 package repository;
 
+import module.ScheduleModule;
 import java.util.List;
-import model.Schedule;
 
 public interface IScheduleRepository {
-    Schedule getById(int scheduleId);
-    List<Schedule> getAllSchedules();
-    void save(Schedule schedule);
-    void update(Schedule schedule);
+    ScheduleModule getById(int scheduleId);
+    List<ScheduleModule> getAllSchedules();
+    void save(ScheduleModule schedule);
+    void update(ScheduleModule schedule);
     void delete(int scheduleId);
 }

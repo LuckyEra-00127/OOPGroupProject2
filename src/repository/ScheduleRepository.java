@@ -1,30 +1,33 @@
 package repository;
 
+import module.ScheduleModule;
 import java.util.ArrayList;
 import java.util.List;
-import model.Schedule;
 
 public class ScheduleRepository implements IScheduleRepository {
-    private List<Schedule> schedules = new ArrayList<>();
+    private List<ScheduleModule> schedules = new ArrayList<>();
 
     @Override
-    public Schedule getById(int scheduleId) {
-        return schedules.stream().filter(s -> s.getScheduleId() == scheduleId).findFirst().orElse(null);
+    public ScheduleModule getById(int scheduleId) {
+        return schedules.stream()
+                .filter(s -> s.getScheduleId() == scheduleId)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
-    public List<Schedule> getAllSchedules() {
+    public List<ScheduleModule> getAllSchedules() {
         return schedules;
     }
 
     @Override
-    public void save(Schedule schedule) {
+    public void save(ScheduleModule schedule) {
         schedules.add(schedule);
     }
 
     @Override
-    public void update(Schedule schedule) {
-        Schedule existingSchedule = getById(schedule.getScheduleId());
+    public void update(ScheduleModule schedule) {
+        ScheduleModule existingSchedule = getById(schedule.getScheduleId());
         if (existingSchedule != null) {
             existingSchedule.setCourseId(schedule.getCourseId());
             existingSchedule.setDay(schedule.getDay());

@@ -1,13 +1,13 @@
-package model;
+package module;
 
-public class Schedule {
+public class ScheduleModule {
     private int scheduleId;
     private int courseId;
     private String day;
     private String time;
 
     // Constructor
-    public Schedule(int scheduleId, int courseId, String day, String time) {
+    public ScheduleModule(int scheduleId, int courseId, String day, String time) {
         this.scheduleId = scheduleId;
         this.courseId = courseId;
         this.day = day;

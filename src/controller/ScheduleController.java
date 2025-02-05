@@ -1,33 +1,38 @@
 package controller;
 
+import module.ScheduleModule;
+import repository.IScheduleRepository;
 import java.util.List;
-import model.Schedule;
-import service.ScheduleService;
 
-public class ScheduleController {
-    private ScheduleService scheduleService;
+public class ScheduleController implements IScheduleController {
+    private IScheduleRepository scheduleRepository;
 
-    public ScheduleController(ScheduleService scheduleService) {
-        this.scheduleService = scheduleService;
+    public ScheduleController(IScheduleRepository scheduleRepository) {
+        this.scheduleRepository = scheduleRepository;
     }
 
-    public Schedule getScheduleById(int scheduleId) {
-        return scheduleService.getScheduleById(scheduleId);
+    @Override
+    public ScheduleModule getScheduleById(int scheduleId) {
+        return scheduleRepository.getById(scheduleId);
     }
 
-    public List<Schedule> getAllSchedules() {
-        return scheduleService.getAllSchedules();
+    @Override
+    public List<ScheduleModule> getAllSchedules() {
+        return scheduleRepository.getAllSchedules();
     }
 
-    public void createSchedule(Schedule schedule) {
-        scheduleService.createSchedule(schedule);
+    @Override
+    public void createSchedule(ScheduleModule schedule) {
+        scheduleRepository.save(schedule);
     }
 
-    public void updateSchedule(Schedule schedule) {
-        scheduleService.updateSchedule(schedule);
+    @Override
+    public void updateSchedule(ScheduleModule schedule) {
+        scheduleRepository.update(schedule);
     }
 
+    @Override
     public void deleteSchedule(int scheduleId) {
-        scheduleService.deleteSchedule(scheduleId);
+        scheduleRepository.delete(scheduleId);
     }
 }

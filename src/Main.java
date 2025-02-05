@@ -1,30 +1,28 @@
-import model.Schedule;
-import repository.IScheduleRepository;
-import repository.ScheduleRepository;
-import service.ScheduleService;
+import controller.IScheduleController;
 import controller.ScheduleController;
+import module.ScheduleModule;
+import repository.ScheduleRepository;
 
 public class Main {
     public static void main(String[] args) {
-        // Initialize Repository, Service, and Controller
-        IScheduleRepository scheduleRepository = new ScheduleRepository();
-        ScheduleService scheduleService = new ScheduleService(scheduleRepository);
-        ScheduleController scheduleController = new ScheduleController(scheduleService);
+        // Initialize Repository, Module, and Controller
+        ScheduleRepository scheduleRepository = new ScheduleRepository();
+        ScheduleModule scheduleModule = new ScheduleModule(1, 101, "Monday", "10:00 AM");
+        IScheduleController scheduleController = new ScheduleController(scheduleRepository);
 
         // Create a new schedule
-        Schedule schedule1 = new Schedule(1, 101, "Monday", "10:00 AM");
-        scheduleController.createSchedule(schedule1);
+        scheduleController.createSchedule(scheduleModule);
 
         // Get and print all schedules
         scheduleController.getAllSchedules().forEach(s ->
                 System.out.println(s.getDay() + " " + s.getTime()));
 
         // Update a schedule
-        schedule1.setTime("12:00 AM");
-        scheduleController.updateSchedule(schedule1);
+        scheduleModule.setTime("11:00 AM");
+        scheduleController.updateSchedule(scheduleModule);
 
         // Get schedule by ID
-        Schedule schedule = scheduleController.getScheduleById(1);
+        ScheduleModule schedule = scheduleController.getScheduleById(1);
         System.out.println(schedule.getDay() + " " + schedule.getTime());
 
         // Delete a schedule
